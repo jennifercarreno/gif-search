@@ -1,11 +1,15 @@
-<h1>Gif Search</h1>
-<form action="/" method="GET">
-  <input type="text" name="term">
-  <button type="submit">Search</button>
-</form>
-{{#each gifs}}
-  <div class="tenor-gif-embed" data-postid="{{this.id}}" data-share-method="host" data-width="300px" data-height="300px">
-    <a href="{{this.url}}"></a>
-  </div>
-  <script type="text/javascript" src="https://tenor.com/embed.js"></script>
-{{/each}}
+<header>
+  <h1>Jennifer's Gif Search</h1>
+  <form action="/" method="GET">
+    <input type="text" name="term" autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
+</header>
+<div class="gifs">
+  {{#each gifs}}
+    <div class="tenor-gif-embed" data-postid="{{this.id}}" data-share-method="host" data-width="300px" data-height="300px">
+      <a href="{{this.url}}"></a>
+    </div>
+    <script type="text/javascript" src="https://tenor.com/embed.js"></script>
+  {{/each}}
+</div>
