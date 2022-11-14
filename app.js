@@ -2,18 +2,21 @@ const express = require('express');
 const app = express();
 const { engine } = require('express-handlebars');
 const fetch = require('node-fetch');
+const expressSanitizer = require('express-sanitizer');
+
 require('dotenv').config();
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set("views", "./views");
 app.use(express.static('public'));
+app.use(expressSanitizer());
 
 app.get('/', 
   (req, res) => {
     let term = "";
     if (req.query.term) {
-      term = req.query.term
+      term = req.sanitize(req.query.term)
     }
     fetch(`https://g.tenor.com/v1/search?q=${term}&key=${process.env.API_KEY}&limit=10`)
     .then(response => response.json())
